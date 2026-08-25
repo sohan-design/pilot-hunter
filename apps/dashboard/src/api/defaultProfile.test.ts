@@ -22,7 +22,7 @@ describe('normalizeProfile', () => {
 
 describe('getProfileInitials', () => {
   it('returns initials for a full name', () => {
-    expect(getProfileInitials('Hemal Buha')).toBe('HB');
+    expect(getProfileInitials('Sohan Bhute')).toBe('SB');
   });
 
   it('returns fallback when name is missing', () => {

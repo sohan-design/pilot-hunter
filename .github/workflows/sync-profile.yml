@@ -51,7 +51,8 @@ jobs:
           PROFILE_JSON: ${{ inputs.profile_json }}
         run: |
           ARGS=("--action" "$ACTION")
-          if [ "$FORCE_OVERWRITE" = "true" ]; then
+          # Commits that change profile.json intentionally replace the single candidate profile.
+          if [ "$FORCE_OVERWRITE" = "true" ] || [ "${{ github.event_name }}" = "push" ]; then
             ARGS+=("--force")
           fi
           if [ -n "$PROFILE_JSON" ]; then
