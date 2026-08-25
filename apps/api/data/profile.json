@@ -1,124 +1,244 @@
 {
-  "fullName": "Hemal Buha",
-  "email": "buhahemal10@gmail.com",
-  "phone": "+91-7359943259",
-  "website": "https://github.com/buhahemal",
-  "github": "https://github.com/buhahemal",
-  "linkedin": "https://www.linkedin.com/in/hemalbuha/",
-  "location": "Bangalore, India (Open to Remote / Global)",
+  "fullName": "Sohan Bhute",
+  "email": "sohan.work@proton.me",
+  "phone": "+91-7588979622",
+  "website": "https://www.sooohan.framer.website",
+  "github": "",
+  "linkedin": "https://www.linkedin.com/in/sohan-bhute",
+  "location": "Bengaluru, India (Open to Remote, Hybrid, and On-site)",
+  "summary": "Computer Science graduate turned Senior Product Designer and Researcher with 4+ years of experience building intuitive, emotional, cross-platform digital products. Strong in user research, UI/UX, interaction design, information architecture, prototyping, usability testing, and design systems. Moving into design engineering to ship polished micro-interactions and frontend with design finesse. End-to-end ownership from discovery to delivery, collaborating with PMs, engineers, and stakeholders. Also experienced with AI-assisted product workflows. Architecture dropout with a strong visual and systems foundation.",
   "targetRoles": [
-    "Senior Backend Engineer",
-    "Senior Platform Engineer",
-    "Node.js Architect",
-    "Backend Engineer",
-    "Platform Engineer",
-    "Staff Software Engineer",
-    "Staff Backend Engineer",
-    "Principal Backend Engineer"
+    "Senior Product Designer",
+    "Product Designer",
+    "Digital Product Designer",
+    "Design Engineer",
+    "UI/UX Designer",
+    "Senior UX Designer",
+    "Product Design Lead",
+    "Interaction Designer",
+    "UX Designer"
   ],
   "skills": [
-    "Node.js",
-    "TypeScript",
-    "JavaScript",
-    "Python",
-    "Golang",
-    "PHP",
-    "Express.js",
-    "Microservices",
-    "REST APIs",
-    "WebSockets",
-    "AWS",
-    "Lambda",
-    "EC2",
-    "S3",
-    "SES",
-    "SQS",
-    "CloudFront",
-    "CloudWatch",
-    "RDS",
-    "Docker",
-    "Kubernetes",
-    "Jenkins",
-    "GitHub Actions",
-    "Terraform",
-    "CI/CD",
-    "MySQL",
-    "PostgreSQL",
-    "Redis",
-    "MongoDB",
-    "System Design",
-    "Event-Driven Architecture",
-    "LangChain",
-    "Socket.io"
+    "User Research",
+    "UI Design",
+    "UX Design",
+    "Interaction Design",
+    "Information Architecture",
+    "Wireframing",
+    "Rapid Prototyping",
+    "Usability Testing",
+    "Design Systems",
+    "Responsive Design",
+    "Cross-Platform Design",
+    "Visual Design",
+    "Data-Informed Design",
+    "End-to-End Design Ownership",
+    "Stakeholder Communication",
+    "Figma",
+    "Framer",
+    "Jitter",
+    "Lottie",
+    "Blender",
+    "Unreal Engine 5",
+    "Adobe Suite",
+    "HTML",
+    "CSS",
+    "Cursor",
+    "GitHub",
+    "Figma MCP",
+    "AI-Assisted Design",
+    "Design Engineering"
   ],
-  "experience": [
+  "skillGroups": [
     {
-      "role": "Senior Platform Engineer - Backend",
-      "company": "Edmingle",
-      "period": "July 2021 -- Present",
-      "bullets": [
-        "Scaled Edmingle from thousands to over 30M+ records using microservices, optimized MySQL queries, and event-driven architecture; improved performance by 65% and boosted revenue by 15%.",
-        "Achieved 99.99% uptime through multi-AZ failovers, load-balanced services, and real-time monitoring with zero-downtime deployments during academic peaks.",
-        "Migrated notification services from Mailgun to Amazon SES, cutting email costs by 70%; deployed serverless functions and auto-scaling EC2, reducing idle compute costs by 40%.",
-        "Built an interactive calendar and class scheduling module with 300ms API response times; adopted by 40% of platform users.",
-        "Revamped multi-gateway payment integrations (Razorpay, Stripe, PayU) into a modular marketplace model, reducing integration time from 2 weeks to 3 days.",
-        "Designed a secure webhook system with event deduplication, signature validation, and retries for real-time external integrations.",
-        "Developed the official Edmingle SDK and integrated Single Sign-On for white-label client onboarding.",
-        "Implemented multi-currency pricing and regional configurations for global expansion.",
-        "Engineered CI/CD and deployment automation via Jenkins and Docker, reducing release times by 2x."
+      "label": "Design Craft",
+      "items": [
+        "User Research",
+        "UI Design",
+        "UX Design",
+        "Interaction Design",
+        "Information Architecture",
+        "Wireframing",
+        "Rapid Prototyping",
+        "Usability Testing",
+        "Design Systems",
+        "Responsive Design",
+        "Cross-Platform Design",
+        "Visual Design",
+        "Data-Informed Design"
       ]
     },
     {
-      "role": "Software Engineer",
-      "company": "Rovae Inc.",
-      "period": "July 2020 -- July 2021",
+      "label": "Tools",
+      "items": [
+        "Figma",
+        "Framer",
+        "Jitter",
+        "Lottiefiles",
+        "Blender",
+        "UE5",
+        "Adobe Suite",
+        "Cursor",
+        "GitHub",
+        "Figma MCP"
+      ]
+    },
+    {
+      "label": "Engineering-Adjacent",
+      "items": ["HTML", "CSS", "Design Engineering", "AI-Assisted Workflows", "Vibecode"]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Senior Product Designer",
+      "company": "Edmingle (Ascorb Technologies)",
+      "period": "Jan 2025 -- Present",
+      "location": "Bengaluru, India",
       "bullets": [
-        "Engineered a high-performance web application using PHP and Laravel that exceeded efficiency benchmarks by 80%.",
-        "Integrated multiple third-party REST APIs to deliver diverse and dynamic content with seamless interoperability.",
-        "Designed inventory management and POS solution with analytics, reporting, and e-commerce integration."
+        "Redesigned the enterprise dashboard (AI-assisted) and learner experience, boosting sales by 60%.",
+        "Introduced Design System 1.0, increasing design efficiency by 40%.",
+        "Streamlined navigation across the main dashboard, reducing user friction.",
+        "Drove 40% increase in adoption of new features through improved UX.",
+        "Automated graphical dependencies on designers, saving 30% support time.",
+        "Revamped the Edmingle website for 2026 with expanded page coverage for stronger SEO.",
+        "Owned end-to-end UI/UX from research to delivery: flows, IA, wireframes, prototypes, high-fidelity UI, and usability iteration."
+      ]
+    },
+    {
+      "role": "Visual and Product Designer",
+      "company": "Zyncspace",
+      "period": "Apr 2025 -- Nov 2025",
+      "location": "Bengaluru, India",
+      "bullets": [
+        "Produced branding and website for the new Zyncspace product.",
+        "Shipped MVP, website, and ads under tight timelines."
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "company": "Edmingle (Ascorb Technologies)",
+      "period": "Jan 2022 -- Dec 2024",
+      "location": "Bengaluru, India",
+      "bullets": [
+        "Improved core UX journeys, reducing friction by 50%.",
+        "Improved bulk actions with CSV (AI-assisted) through clearer UX.",
+        "Collaborated with frontend/backend engineering, support, and users to design within real constraints.",
+        "Revamped visual identity and website for Edmingle 2024.",
+        "Designed and shipped user-centric SaaS features with strong visual and interaction quality in fast cycles."
+      ]
+    },
+    {
+      "role": "UI/UX Designer",
+      "company": "Europ Assistance",
+      "period": "Jun 2021 -- Nov 2021",
+      "location": "Mumbai, India (Remote)",
+      "bullets": [
+        "Moved the design process from Photoshop to Figma.",
+        "Revamped dashboards and introduced metrics for cybersecurity products.",
+        "Revamped the entire Cyberior.com website.",
+        "Redesigned dashboards and web interfaces for usability, structure, and visual clarity."
+      ]
+    },
+    {
+      "role": "Freelance UI and Web Designer",
+      "company": "Freelance",
+      "period": "Mar 2021 -- Jun 2021",
+      "location": "India",
+      "bullets": [
+        "Designed responsive websites and interfaces for global clients.",
+        "Delivered brand-consistent, cross-platform designs under tight timelines."
       ]
     }
   ],
   "education": [
     {
-      "degree": "Master of Computer Application, Cloud Technology (Gold Medalist, CGPA 9.8)",
-      "school": "Ajeenkya D. Y. Patil University",
-      "period": "August 2019 -- May 2022"
+      "degree": "Bachelor of Computer Application",
+      "school": "City Premiere College",
+      "period": "2018 -- 2021",
+      "location": "Nagpur, India"
+    },
+    {
+      "degree": "Bachelor of Architecture (Dropout)",
+      "school": "Institute of Design Education and Architectural Studies",
+      "period": "2016 -- 2017",
+      "location": "Nagpur, India"
     }
   ],
   "projects": [
     {
-      "title": "ZyncSpace | AI-Powered Collaboration Platform",
-      "description": "Engineered a high-performance, AI-powered collaboration platform handling 1M+ daily messages with sub-200ms latency. Built fault-tolerant, event-driven backend using Redis queues and vector embeddings — achieving 99.90% uptime, 3x throughput, and 40% cost reduction.",
-      "tech": ["Node.js", "AWS", "MySQL", "Redis", "Socket.io", "Message Queues", "LangChain"]
+      "title": "Veda AI — AI-Assisted LMS",
+      "description": "Introduced multiple agents on the LMS to automate evaluation, content generation, writing assistance, interviewing, and onboarding. Built an AI companion deeply integrated into the interface to answer learner queries at any stage of learning.",
+      "tech": ["Product Design", "AI Agents", "LMS", "Figma", "UX"]
+    },
+    {
+      "title": "Website Builder (v3)",
+      "description": "Created builder version 3 based on learnings from version 2, fulfilling common user demand with CMS and CDN solutions for a website-building product aimed at non-technical users.",
+      "tech": ["Product Design", "CMS", "CDN", "Framer", "UX"]
+    },
+    {
+      "title": "Edmingle.com Revamp",
+      "description": "Led a two-month website revamp with PM and visual designer collaboration, tripling page count for better SEO and clearer product storytelling.",
+      "tech": ["Web Design", "SEO", "Figma", "Content Design"]
+    },
+    {
+      "title": "Design Engineering Frontend",
+      "description": "Shipped frontend directly with design finesse to reduce handoff and cut development time by 40%. Tools: Cursor, GitHub, and Figma MCP.",
+      "tech": ["Design Engineering", "HTML", "CSS", "Cursor", "Figma MCP", "GitHub"]
+    },
+    {
+      "title": "Graphical Automation",
+      "description": "Automated app graphics for iOS and Android, reducing go-live time by 30%.",
+      "tech": ["Automation", "Mobile Design", "Visual Design"]
     }
   ],
   "preferences": {
-    "locations": ["Remote", "India", "US", "Global"],
-    "remotePreference": "Remote",
-    "companySizes": ["50-200", "200-10,000", "10,000+"],
+    "locations": [
+      "Remote",
+      "Bengaluru",
+      "Bangalore",
+      "India",
+      "Hybrid",
+      "On-site",
+      "Global"
+    ],
+    "remotePreference": "Any",
+    "companySizes": ["1-50", "50-200", "200-1,000", "1,000+"],
     "targetCompanies": [
-      "Stripe",
+      "Figma",
+      "Notion",
+      "Linear",
+      "Vercel",
+      "Framer",
+      "Canva",
+      "Adobe",
       "Atlassian",
-      "Freshworks",
-      "Razorpay",
-      "Postman",
-      "Hasura",
-      "Chargebee",
+      "Spotify",
+      "Stripe",
       "EdTech",
-      "SaaS"
+      "SaaS",
+      "Design Tools"
     ],
     "skillsKeywords": [
-      "Node.js",
-      "AWS",
-      "Microservices",
-      "MySQL",
-      "Redis",
-      "TypeScript",
-      "Backend",
-      "System Design",
-      "CI/CD",
-      "Serverless"
-    ]
+      "Product Design",
+      "UI/UX",
+      "UX Design",
+      "Design Systems",
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Interaction Design",
+      "Design Engineer",
+      "Framer",
+      "SaaS",
+      "EdTech"
+    ],
+    "companyBlacklist": [],
+    "titleBlacklist": ["Intern", "Junior", "Associate Intern"],
+    "locationBlacklist": [],
+    "experienceLevels": ["Mid", "Senior", "Lead", "Staff"],
+    "applyOncePerCompany": false
+  },
+  "matchSettings": {
+    "minMatchScore": 70
   }
 }
