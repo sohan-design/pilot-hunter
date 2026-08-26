@@ -21,6 +21,9 @@ from packages.database.python.constants import (
 )
 
 CANONICAL_ROLES = (
+    'Product Designer',
+    'UI/UX Designer',
+    'Design Engineer',
     'Platform Engineer',
     'Backend Engineer',
     'DevOps Engineer',
@@ -32,6 +35,9 @@ CANONICAL_ROLES = (
 )
 
 ROLE_PATTERNS: Tuple[Tuple[str, Tuple[str, ...]], ...] = (
+    ('Product Designer', ('product designer', 'product design', 'digital product designer')),
+    ('UI/UX Designer', ('ui/ux', 'ui ux', 'ux/ui', 'ux designer', 'ui designer', 'interaction designer')),
+    ('Design Engineer', ('design engineer', 'design engineering')),
     ('Site Reliability Engineer', ('site reliability', 'sre', 'reliability engineer')),
     ('Platform Engineer', ('platform engineer', 'platform engineering')),
     ('DevOps Engineer', ('devops', 'dev ops', 'ci/cd engineer')),
@@ -42,6 +48,20 @@ ROLE_PATTERNS: Tuple[Tuple[str, Tuple[str, ...]], ...] = (
 )
 
 TECHNOLOGY_KEYWORDS = (
+    'Figma',
+    'Framer',
+    'Sketch',
+    'Adobe XD',
+    'Photoshop',
+    'Illustrator',
+    'Design Systems',
+    'Prototyping',
+    'User Research',
+    'Usability Testing',
+    'Wireframing',
+    'Lottie',
+    'Jitter',
+    'Blender',
     'Node.js',
     'TypeScript',
     'JavaScript',
@@ -218,8 +238,15 @@ def _compute_experience_match(job: Dict, profile: Dict) -> int:
     target_roles = [str(role).lower() for role in (profile.get('targetRoles') or [])]
     title = (job.get('title') or '').lower()
     score = 45
-    if any(role.split()[0] in title for role in target_roles if role):
+    if any(role and role in title for role in target_roles):
+        score += 30
+    elif any(
+        role and all(token in title for token in role.replace('/', ' ').split() if len(token) > 1)
+        for role in target_roles
+    ):
         score += 25
+    elif any(role.split()[0] in title for role in target_roles if role):
+        score += 15
     if job_seniority == 'Senior':
         score += 20
     elif job_seniority == 'Mid-level':
@@ -283,10 +310,25 @@ def _compute_location_match(job: Dict, profile: Dict) -> int:
     return 45
 
 
-def _compute_salary_match(job: Dict) -> int:
+def _compute_salary_match(job: Dict, profile: Dict | None = None) -> int:
+    preferences = (profile or {}).get('preferences') or {}
+    min_lpa = preferences.get('minSalaryLpa')
     salary = (job.get('salaryEstimate') or '').lower()
     if not salary or salary in {'not specified', 'unknown'}:
         return 50
+    try:
+        floor = float(min_lpa) if min_lpa is not None and str(min_lpa).strip() != '' else None
+    except (TypeError, ValueError):
+        floor = None
+    if floor is not None and floor > 0:
+        from packages.scanner_sdk.python.salary import salary_ceiling_lpa_inr
+
+        ceiling = salary_ceiling_lpa_inr(salary)
+        if ceiling is None:
+            return 55
+        if ceiling >= floor:
+            return 95
+        return 20
     if any(token in salary for token in ('$', 'usd', 'inr', 'lpa', 'k', 'year')):
         return 75
     return 60
@@ -298,7 +340,10 @@ def _compute_ats_score(job: Dict, matched_skills: List[str], missing_skills: Lis
     score = 40
     score += min(35, len(matched_skills) * 5)
     score += 10 if len(description) > 400 else 0
-    score += 10 if any(token in title.lower() for token in ('engineer', 'developer', 'architect')) else 0
+    score += 10 if any(
+        token in title.lower()
+        for token in ('designer', 'ux', 'ui/', 'product design', 'engineer', 'developer', 'architect')
+    ) else 0
     score -= min(25, len(missing_skills) * 5)
     return _clamp(score)
 
@@ -416,7 +461,7 @@ def enrich_job(
     )
     company_score = _compute_company_match(job, profile)
     location_score = _compute_location_match(job, profile)
-    salary_score = _compute_salary_match(job)
+    salary_score = _compute_salary_match(job, profile)
     ats_score = _compute_ats_score(job, matched_skills, missing_skills)
 
     base_score = int(analysis.get('score', 0))

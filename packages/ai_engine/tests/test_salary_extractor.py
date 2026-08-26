@@ -2,7 +2,12 @@
 
 import unittest
 
-from packages.ai_engine.python.salary_extractor import NOT_SPECIFIED, extract_salary
+from packages.ai_engine.python.salary_extractor import (
+    NOT_SPECIFIED,
+    extract_salary,
+    job_meets_min_salary_lpa,
+    salary_ceiling_lpa_inr,
+)
 
 
 class TestSalaryExtractor(unittest.TestCase):
@@ -36,6 +41,23 @@ class TestSalaryExtractor(unittest.TestCase):
             'description': 'No numbers here.',
         }
         self.assertIn('150k', extract_salary(job))
+
+    def test_salary_ceiling_parses_lpa_range(self):
+        ceiling = salary_ceiling_lpa_inr('18 - 25 LPA')
+        self.assertIsNotNone(ceiling)
+        self.assertGreaterEqual(ceiling or 0, 25)
+
+    def test_job_meets_min_salary_rejects_low_lpa(self):
+        job = {'description': 'Compensation: 12 LPA fixed'}
+        self.assertFalse(job_meets_min_salary_lpa(job, 20))
+
+    def test_job_meets_min_salary_allows_unknown(self):
+        job = {'description': 'No compensation listed'}
+        self.assertTrue(job_meets_min_salary_lpa(job, 20))
+
+    def test_job_meets_min_salary_allows_high_usd(self):
+        job = {'description': 'Salary: $120k – $180k per year'}
+        self.assertTrue(job_meets_min_salary_lpa(job, 20))
 
 
 if __name__ == '__main__':

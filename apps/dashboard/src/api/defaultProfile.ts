@@ -14,12 +14,14 @@ export const DEFAULT_PROFILE: Profile = {
     skillsKeywords: [],
     companyBlacklist: [],
     titleBlacklist: [],
+    titleWhitelist: [],
     locationBlacklist: [],
     experienceLevels: [],
     applyOncePerCompany: false,
+    minSalaryLpa: null,
     ...((profileBase as Partial<Profile>).preferences ?? {}),
   },
-  matchSettings: { minMatchScore: 75 },
+  matchSettings: { minMatchScore: 65 },
   masterResumeLaTeX: '',
 };
 

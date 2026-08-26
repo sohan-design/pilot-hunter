@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from typing import Dict, List
 
+from packages.scanner_sdk.python.salary import job_meets_min_salary_lpa
 from packages.config.python.remote_policy import analyze_remote_eligibility
 
 
@@ -33,6 +34,14 @@ def evaluate_job_preferences(
         if _matches_any(str(job.get(field) or ''), preferences.get(preference) or []):
             return PreferenceDecision(False, reason)
 
+    title_whitelist = [
+        str(pattern).strip()
+        for pattern in (preferences.get('titleWhitelist') or [])
+        if str(pattern).strip()
+    ]
+    if title_whitelist and not _matches_any(str(job.get('title') or ''), title_whitelist):
+        return PreferenceDecision(False, 'title_whitelist')
+
     if preferences.get('applyOncePerCompany'):
         company = str(job.get('company') or '').strip().lower()
         if company and any(str(item.get('company') or '').strip().lower() == company for item in existing_jobs):
@@ -47,5 +56,14 @@ def evaluate_job_preferences(
         text = f"{job.get('location', '')} {job.get('description', '')}"
         if analyze_remote_eligibility(text).hard_restriction:
             return PreferenceDecision(False, 'remote_restriction')
+
+    min_salary_lpa = preferences.get('minSalaryLpa')
+    if min_salary_lpa is not None and str(min_salary_lpa).strip() != '':
+        try:
+            floor = float(min_salary_lpa)
+        except (TypeError, ValueError):
+            floor = None
+        if floor is not None and floor > 0 and not job_meets_min_salary_lpa(job, floor):
+            return PreferenceDecision(False, 'salary_below_minimum')
 
     return PreferenceDecision(True)

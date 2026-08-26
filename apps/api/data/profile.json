@@ -9,14 +9,16 @@
   "summary": "Computer Science graduate turned Senior Product Designer and Researcher with 4+ years of experience building intuitive, emotional, cross-platform digital products. Strong in user research, UI/UX, interaction design, information architecture, prototyping, usability testing, and design systems. Moving into design engineering to ship polished micro-interactions and frontend with design finesse. End-to-end ownership from discovery to delivery, collaborating with PMs, engineers, and stakeholders. Also experienced with AI-assisted product workflows. Architecture dropout with a strong visual and systems foundation.",
   "targetRoles": [
     "Senior Product Designer",
+    "Product Designer II",
     "Product Designer",
+    "UI/UX Designer",
+    "UI UX Designer",
+    "Lead Product Designer",
+    "Staff Product Designer",
     "Digital Product Designer",
     "Design Engineer",
-    "UI/UX Designer",
     "Senior UX Designer",
-    "Product Design Lead",
-    "Interaction Designer",
-    "UX Designer"
+    "Interaction Designer"
   ],
   "skills": [
     "User Research",
@@ -233,12 +235,38 @@
       "EdTech"
     ],
     "companyBlacklist": [],
-    "titleBlacklist": ["Intern", "Junior", "Associate Intern"],
+    "titleWhitelist": [
+      "Product Designer",
+      "Product Designer II",
+      "UI/UX",
+      "UI UX",
+      "UX Designer",
+      "UI Designer",
+      "Design Engineer",
+      "Interaction Designer",
+      "Digital Product Designer",
+      "UX/UI"
+    ],
+    "titleBlacklist": [
+      "Intern",
+      "Junior",
+      "Associate Intern",
+      "Software Engineer",
+      "Backend Engineer",
+      "Frontend Engineer",
+      "Full Stack Engineer",
+      "DevOps",
+      "Data Engineer",
+      "Account Executive",
+      "Sales",
+      "Recruiter"
+    ],
     "locationBlacklist": [],
     "experienceLevels": ["Mid", "Senior", "Lead", "Staff"],
-    "applyOncePerCompany": false
+    "applyOncePerCompany": false,
+    "minSalaryLpa": 20
   },
   "matchSettings": {
-    "minMatchScore": 70
+    "minMatchScore": 65
   }
 }

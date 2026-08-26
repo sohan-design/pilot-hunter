@@ -29,9 +29,11 @@ STORED_PROFILE_DEFAULTS: Dict[str, Any] = {
         'skillsKeywords': [],
         'companyBlacklist': [],
         'titleBlacklist': [],
+        'titleWhitelist': [],
         'locationBlacklist': [],
         'experienceLevels': [],
         'applyOncePerCompany': False,
+        'minSalaryLpa': None,
     },
     'matchSettings': {
         'minMatchScore': MATCH_SCORE_THRESHOLD,

@@ -206,9 +206,12 @@ export interface ProfileRecord {
     skillsKeywords: string[];
     companyBlacklist: string[];
     titleBlacklist: string[];
+    titleWhitelist: string[];
     locationBlacklist: string[];
     experienceLevels: string[];
     applyOncePerCompany: boolean;
+    /** Minimum annual compensation in Lakh INR. Unknown salaries are allowed. */
+    minSalaryLpa: number | null;
   };
   matchSettings: ProfileMatchSettings;
   masterResumeLaTeX: string;

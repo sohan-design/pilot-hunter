@@ -78,5 +78,11 @@
   ],
   "smartrecruiters": ["Visa", "Square", "Bosch", "IKEA", "Wolt", "HelloFresh"],
   "workday": ["https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite"],
-  "wellfound": ["/role/l/software-engineer/remote"]
+  "wellfound": [
+    "/role/l/product-designer/remote",
+    "/role/l/product-designer/bengaluru",
+    "/role/l/product-designer/india",
+    "/role/product-designer",
+    "/role/l/ui-ux-designer/remote"
+  ]
 }

@@ -70,7 +70,9 @@ jobs:
           ASHBY_JOB_BOARD_SLUGS: ${{ secrets.ASHBY_JOB_BOARD_SLUGS }}
           WORKDAY_CAREER_SITES: ${{ secrets.WORKDAY_CAREER_SITES }}
           WELLFOUND_SEARCH_PATHS: ${{ secrets.WELLFOUND_SEARCH_PATHS }}
-          SCANNER_MIN_MATCH_SCORE: '75'
+          LINKEDIN_JOB_QUERIES: ${{ secrets.LINKEDIN_JOB_QUERIES }}
+          LINKEDIN_JOB_LOCATIONS: ${{ secrets.LINKEDIN_JOB_LOCATIONS }}
+          SCANNER_MIN_MATCH_SCORE: '65'
           SCANNER_MAX_PASSES: '4'
           SCANNER_LIMIT_STEP: '50'
           SCANNER_MAX_LIMIT_PER_SOURCE: '200'
@@ -78,6 +80,16 @@ jobs:
           ATS_DISCOVERY_ENABLED: 'true'
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          if [ -z "$WELLFOUND_SEARCH_PATHS" ]; then
+            export WELLFOUND_SEARCH_PATHS="/role/l/product-designer/remote,/role/l/product-designer/bengaluru,/role/l/product-designer/india,/role/product-designer,/role/l/ui-ux-designer/remote"
+            echo "Using default Wellfound product-designer search paths."
+          fi
+          if [ -z "$LINKEDIN_JOB_QUERIES" ]; then
+            export LINKEDIN_JOB_QUERIES="Senior Product Designer,Product Designer II,Product Designer,UI UX Designer,UI/UX Designer"
+          fi
+          if [ -z "$LINKEDIN_JOB_LOCATIONS" ]; then
+            export LINKEDIN_JOB_LOCATIONS="Bengaluru,India,Remote"
+          fi
           START=$(date +%s)
           python3 -m scraper
           END=$(date +%s)

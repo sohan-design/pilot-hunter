@@ -5,7 +5,7 @@ from packages.scanner_sdk.python.http import fetch_ok, get_json_any
 from packages.scanner_sdk.python.normalize import (
     build_canonical_job,
     infer_remote_type,
-    is_engineering_job_title,
+    is_design_job_title,
     strip_html,
 )
 
@@ -13,7 +13,7 @@ API_URL = 'https://remoteok.com/api'
 
 
 class RemoteOkScanner(BaseScanner):
-    """RemoteOK public JSON API — no API key required."""
+    """RemoteOK public JSON API — design / product design titles only."""
 
     @property
     def name(self) -> str:
@@ -29,7 +29,7 @@ class RemoteOkScanner(BaseScanner):
             if not isinstance(item, dict) or not item.get('position'):
                 continue
             position = str(item.get('position', ''))
-            if not is_engineering_job_title(position):
+            if not is_design_job_title(position):
                 continue
             jobs.append(item)
             if len(jobs) >= limit:
@@ -43,6 +43,9 @@ class RemoteOkScanner(BaseScanner):
         description = raw_job.get('description', '')
         if not description and raw_job.get('tags'):
             description = 'Tags: ' + ', '.join(raw_job.get('tags', []))
+        salary = str(raw_job.get('salary') or '').strip()
+        if salary:
+            description = f'Salary: {salary}\n\n{description}'
 
         return build_canonical_job(
             id=f'remoteok-{slug}',
