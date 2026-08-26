@@ -11,6 +11,7 @@ ENV_BY_PLATFORM = {
     'lever': 'LEVER_COMPANY_SITES',
     'workable': 'WORKABLE_ACCOUNT_SLUGS',
     'ashby': 'ASHBY_JOB_BOARD_SLUGS',
+    'wellfound': 'WELLFOUND_SEARCH_PATHS',
 }
 
 

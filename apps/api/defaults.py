@@ -17,9 +17,15 @@ def load_profile_base() -> dict:
 def build_default_profile() -> dict:
     """Load profile.json as the canonical seed profile."""
     profile_base = load_profile_base()
+    settings = profile_base.get("matchSettings") or {}
+    raw_score = settings.get("minMatchScore", MATCH_SCORE_THRESHOLD)
+    try:
+        score = int(raw_score)
+    except (TypeError, ValueError):
+        score = MATCH_SCORE_THRESHOLD
     merged = {
         **profile_base,
-        "matchSettings": {"minMatchScore": MATCH_SCORE_THRESHOLD},
+        "matchSettings": {"minMatchScore": max(50, min(100, score))},
     }
     return merged
 

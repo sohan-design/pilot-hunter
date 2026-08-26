@@ -419,11 +419,38 @@ export default function ProfileView({
           onChange={(companyBlacklist) => updatePreferences({ companyBlacklist })}
         />
         <TagListEditor
+          label="Required title keywords"
+          description="When set, only titles matching at least one keyword are scored (e.g. Product Designer)."
+          items={profile.preferences.titleWhitelist ?? []}
+          placeholder="Product Designer, UI/UX"
+          onChange={(titleWhitelist) => updatePreferences({ titleWhitelist })}
+        />
+        <TagListEditor
           label="Excluded job titles"
           items={profile.preferences.titleBlacklist}
           placeholder="Intern, Sales Engineer"
           onChange={(titleBlacklist) => updatePreferences({ titleBlacklist })}
         />
+        <div className="space-y-1">
+          <label className={labelClass}>Minimum salary (Lakh INR / year)</label>
+          <input
+            type="number"
+            min={0}
+            step={1}
+            value={profile.preferences.minSalaryLpa ?? ''}
+            placeholder="20"
+            onChange={(event) => {
+              const raw = event.target.value.trim();
+              updatePreferences({
+                minSalaryLpa: raw === '' ? null : Number(raw),
+              });
+            }}
+            className={inputClass}
+          />
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Jobs with a known salary below this floor are skipped. Listings without pay still pass.
+          </p>
+        </div>
         <TagListEditor
           label="Excluded locations"
           items={profile.preferences.locationBlacklist}

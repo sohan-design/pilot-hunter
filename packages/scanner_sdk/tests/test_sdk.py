@@ -38,6 +38,8 @@ class TestScannerSdk(unittest.TestCase):
         'Ashby',
         'Workday',
         'Wellfound',
+        'LinkedIn',
+        'Remotive',
     }
 
     def test_build_canonical_job(self):

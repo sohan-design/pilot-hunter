@@ -10,12 +10,21 @@ DEFAULT_HEADERS = {'User-Agent': 'AI-Job-Hunter-Agent/1.0'}
 DEFAULT_TIMEOUT_SECONDS = 10
 
 
-def get_response(url: str, timeout: int = DEFAULT_TIMEOUT_SECONDS) -> Optional[requests.Response]:
+def get_response(
+    url: str,
+    timeout: int = DEFAULT_TIMEOUT_SECONDS,
+    headers: Optional[Dict[str, str]] = None,
+) -> Optional[requests.Response]:
     """GET a URL and return the response when successful."""
     try:
-        response = requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
+        response = requests.get(
+            url,
+            headers={**DEFAULT_HEADERS, **(headers or {})},
+            timeout=timeout,
+        )
         if response.status_code == 200:
             return response
+        print(f'[HTTP] GET {url} returned HTTP {response.status_code}')
     except requests.RequestException as exc:
         print(f'[HTTP] GET failed for {url}: {exc}')
     return None

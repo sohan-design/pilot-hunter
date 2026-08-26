@@ -45,6 +45,50 @@ class TestJobPreferenceFilters(unittest.TestCase):
         self.assertFalse(decision.allowed)
         self.assertEqual(decision.reason, 'experience_level')
 
+    def test_title_whitelist_rejects_non_matching_titles(self):
+        decision = evaluate_job_preferences(
+            {'company': 'Acme', 'title': 'Backend Engineer', 'location': 'Remote'},
+            {'preferences': {'titleWhitelist': ['Product Designer', 'UI/UX']}},
+            [],
+        )
+        self.assertFalse(decision.allowed)
+        self.assertEqual(decision.reason, 'title_whitelist')
+
+    def test_title_whitelist_allows_matching_product_designer(self):
+        decision = evaluate_job_preferences(
+            {'company': 'Acme', 'title': 'Senior Product Designer II', 'location': 'Bengaluru'},
+            {'preferences': {'titleWhitelist': ['Product Designer']}},
+            [],
+        )
+        self.assertTrue(decision.allowed)
+
+    def test_salary_below_minimum_lpa_is_rejected(self):
+        decision = evaluate_job_preferences(
+            {
+                'company': 'Acme',
+                'title': 'Product Designer',
+                'location': 'Remote',
+                'description': 'Compensation: 12 LPA',
+            },
+            {'preferences': {'minSalaryLpa': 20}},
+            [],
+        )
+        self.assertFalse(decision.allowed)
+        self.assertEqual(decision.reason, 'salary_below_minimum')
+
+    def test_salary_unknown_is_allowed_with_min_floor(self):
+        decision = evaluate_job_preferences(
+            {
+                'company': 'Acme',
+                'title': 'Product Designer',
+                'location': 'Remote',
+                'description': 'Great team, no pay listed.',
+            },
+            {'preferences': {'minSalaryLpa': 20}},
+            [],
+        )
+        self.assertTrue(decision.allowed)
+
 
 if __name__ == '__main__':
     unittest.main()

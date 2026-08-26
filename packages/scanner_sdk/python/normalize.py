@@ -51,6 +51,24 @@ def infer_remote_type(raw_remote: Optional[bool], location: str) -> str:
     return 'Hybrid'
 
 
+DESIGN_TITLE_TERMS = (
+    'product designer',
+    'product design',
+    'ui/ux',
+    'ui ux',
+    'ux/ui',
+    'ux designer',
+    'ui designer',
+    'interaction designer',
+    'design engineer',
+    'digital product designer',
+    'visual designer',
+    'design system',
+    'ux researcher',
+    'user experience',
+    'user interface',
+)
+
 NON_ENGINEERING_TITLE_TERMS = (
     'hr ',
     'human resource',
@@ -68,10 +86,7 @@ NON_ENGINEERING_TITLE_TERMS = (
     'customer service',
     'call center',
     'asesor de atenci',
-    'graphic designer',
-    'ui/ux designer',
     'illustrator',
-    'creative director',
     'administrative assistant',
     'virtual assistant',
     'office manager',
@@ -119,11 +134,22 @@ ENGINEERING_TITLE_TERMS = (
 )
 
 
-def is_engineering_job_title(title: str, description: str = '') -> bool:
-    """Return True if title represents a software/engineering role."""
+def is_design_job_title(title: str, description: str = '') -> bool:
+    """Return True if title represents a product/UI/UX design role."""
+    del description  # reserved for future description-aware checks
     title_lower = (title or '').lower()
     if not title_lower or title_lower in {'unknown role', 'open position', 'replace with job title'}:
         return False
+    return any(term in title_lower for term in DESIGN_TITLE_TERMS)
+
+
+def is_engineering_job_title(title: str, description: str = '') -> bool:
+    """Return True if title represents a software/engineering or design role."""
+    title_lower = (title or '').lower()
+    if not title_lower or title_lower in {'unknown role', 'open position', 'replace with job title'}:
+        return False
+    if is_design_job_title(title_lower):
+        return True
     if any(term in title_lower for term in ENGINEERING_TITLE_TERMS):
         return True
     if any(term in title_lower for term in NON_ENGINEERING_TITLE_TERMS):

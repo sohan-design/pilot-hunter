@@ -98,11 +98,13 @@
     ],
     "companyBlacklist": [],
     "titleBlacklist": ["Intern", "Junior"],
+    "titleWhitelist": ["Product Designer", "UI/UX", "UX Designer"],
     "locationBlacklist": [],
     "experienceLevels": ["Mid", "Senior", "Lead"],
-    "applyOncePerCompany": false
+    "applyOncePerCompany": false,
+    "minSalaryLpa": 20
   },
   "matchSettings": {
-    "minMatchScore": 75
+    "minMatchScore": 65
   }
 }

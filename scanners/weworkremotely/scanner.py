@@ -3,20 +3,27 @@ from typing import Dict, List
 
 from packages.scanner_sdk.python.base import BaseScanner
 from packages.scanner_sdk.python.http import fetch_ok, get_text
-from packages.scanner_sdk.python.normalize import build_canonical_job, strip_html
+from packages.scanner_sdk.python.normalize import build_canonical_job, is_design_job_title, strip_html
 
-RSS_URL = 'https://weworkremotely.com/remote-jobs.rss'
+RSS_URL = 'https://weworkremotely.com/categories/remote-design-jobs.rss'
+FALLBACK_RSS_URL = 'https://weworkremotely.com/remote-jobs.rss'
 
 
 class WeWorkRemotelyScanner(BaseScanner):
-    """We Work Remotely public RSS feed — no API key required."""
+    """We Work Remotely design-category RSS (falls back to full feed)."""
 
     @property
     def name(self) -> str:
         return 'We Work Remotely'
 
     def discover_jobs(self, limit: int = 10) -> List[Dict]:
-        xml_text = get_text(RSS_URL)
+        jobs = self._parse_feed(RSS_URL, limit, design_only=False)
+        if jobs:
+            return jobs
+        return self._parse_feed(FALLBACK_RSS_URL, limit, design_only=True)
+
+    def _parse_feed(self, url: str, limit: int, *, design_only: bool) -> List[Dict]:
+        xml_text = get_text(url)
         if not xml_text:
             return []
 
@@ -33,6 +40,9 @@ class WeWorkRemotelyScanner(BaseScanner):
             description = (item.findtext('description') or '').strip()
             region = (item.findtext('region') or 'Remote').strip()
             if not title or not link:
+                continue
+            role = title.split(':', 1)[-1].strip() if ':' in title else title
+            if design_only and not is_design_job_title(role):
                 continue
             jobs.append(
                 {
@@ -68,4 +78,4 @@ class WeWorkRemotelyScanner(BaseScanner):
         )
 
     def health_check(self) -> bool:
-        return fetch_ok(RSS_URL)
+        return fetch_ok(RSS_URL) or fetch_ok(FALLBACK_RSS_URL)

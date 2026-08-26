@@ -32,9 +32,11 @@ const STORED_PROFILE_DEFAULTS: ProfileRecord = {
     skillsKeywords: [],
     companyBlacklist: [],
     titleBlacklist: [],
+    titleWhitelist: [],
     locationBlacklist: [],
     experienceLevels: [],
     applyOncePerCompany: false,
+    minSalaryLpa: null,
   },
   matchSettings: {
     minMatchScore: MATCH_SCORE_THRESHOLD,
@@ -122,6 +124,15 @@ export function normalizeStoredProfile(profile?: Partial<ProfileRecord> | null):
       companySizes: [...(source.preferences?.companySizes ?? [])],
       targetCompanies: [...(source.preferences?.targetCompanies ?? [])],
       skillsKeywords: [...(source.preferences?.skillsKeywords ?? [])],
+      companyBlacklist: [...(source.preferences?.companyBlacklist ?? [])],
+      titleBlacklist: [...(source.preferences?.titleBlacklist ?? [])],
+      titleWhitelist: [...(source.preferences?.titleWhitelist ?? [])],
+      locationBlacklist: [...(source.preferences?.locationBlacklist ?? [])],
+      experienceLevels: [...(source.preferences?.experienceLevels ?? [])],
+      minSalaryLpa:
+        source.preferences?.minSalaryLpa === undefined
+          ? STORED_PROFILE_DEFAULTS.preferences.minSalaryLpa
+          : source.preferences.minSalaryLpa,
     },
     matchSettings: normalizeMatchSettings(source.matchSettings),
     masterResumeLaTeX: source.masterResumeLaTeX ?? '',
